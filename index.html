@@ -131,7 +131,7 @@ h1{white-space:nowrap;min-width:0}
 .sec{margin:6px 0 -4px;font:800 1rem var(--body);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.12em}
 .mode{aspect-ratio:1;width:min(40vw,210px)}
 .games{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2.6vw,18px);width:min(100%,780px)}
-@media (min-width:760px){.games{grid-template-columns:repeat(6,1fr)}}
+@media (min-width:760px){.games{grid-template-columns:repeat(7,1fr)}}
 .gbtn{border:0;border-radius:26px;background:var(--tc);color:#fff;cursor:pointer;padding:12px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;
   box-shadow:0 0 0 4px #fff,0 6px 0 4px rgba(0,0,0,.35);font:800 clamp(.82rem,2.9vw,1rem)/1.1 var(--body);text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s;min-height:118px}
 .gbtn i{font-style:normal;font-size:clamp(2.2rem,8vw,3rem);line-height:1;text-shadow:none;filter:drop-shadow(0 3px 0 rgba(0,0,0,.2))}
@@ -270,6 +270,37 @@ h1{white-space:nowrap;min-width:0}
 .album .prog{height:16px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;margin:6px 0 4px}
 .album .prog i{display:block;height:100%;background:linear-gradient(90deg,var(--c3),var(--c2));border-radius:999px}
 .album{z-index:35}
+
+/* write a word */
+.write{display:flex;flex-direction:column;align-items:center;gap:12px;width:min(100%,820px);flex:1;min-height:0;justify-content:space-between}
+.write>.bigbtn{font-size:clamp(.95rem,3.6vw,1.2rem);padding:10px 18px;min-height:50px}
+.wscreen{width:100%;min-height:clamp(70px,14vh,120px);background:#fff;border-radius:24px;display:flex;align-items:center;justify-content:center;padding:8px 16px;box-shadow:0 0 0 5px rgba(255,255,255,.3),0 6px 0 5px rgba(0,0,0,.3);flex:none}
+.wtxt{font:800 clamp(2rem,9vw,4rem)/1.1 var(--display);color:#1b2a38;letter-spacing:.06em;white-space:pre-wrap;overflow-wrap:anywhere;text-align:center}
+.caret{display:inline-block;width:4px;height:clamp(2rem,9vw,3.6rem);background:var(--c5);margin-left:4px;border-radius:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.kb{width:100%;display:flex;flex-direction:column;gap:clamp(5px,1.2vw,10px);flex:none}
+.krow{display:flex;gap:clamp(4px,1vw,8px);justify-content:center}
+.key{flex:1;max-width:76px;min-width:0;height:clamp(46px,7.5vh,72px);border:0;border-radius:14px;background:#fff;color:#1b2a38;font:800 clamp(1.15rem,4.8vw,2rem)/1 var(--display);cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.35);padding:0}
+.key:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.key.wide{flex:1.6;max-width:130px;font-size:clamp(.9rem,3.6vw,1.3rem);font-family:var(--body)}
+.key.del{background:#ffd9d6}
+.key.go{background:var(--c4);color:#fff}
+.key.idea{background:var(--c3);color:#3b2a00}
+.key.space{flex:4;max-width:380px;font:800 clamp(.85rem,3vw,1.1rem) var(--body);color:#6b7c8c}
+.wpop{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;background:rgba(8,20,32,.82);padding:16px}
+.game{position:fixed}
+.gbody{position:relative}
+.wbox{background:var(--c5);border-radius:36px;padding:16px;width:min(94vw,520px);max-height:100%;overflow:auto;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 0 0 6px #fff,0 16px 40px rgba(0,0,0,.5);animation:pop .35s cubic-bezier(.2,1.5,.4,1);text-align:center}
+.wbox img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:26px;max-height:45vh}
+.wbox img.small{width:60%;aspect-ratio:1}
+.wbox h3{margin:0;font:800 clamp(2rem,9vw,3.4rem)/1.05 var(--display);text-shadow:0 3px 0 rgba(0,0,0,.25);letter-spacing:.03em}
+.wsub{margin:0;font:800 clamp(1rem,4vw,1.3rem) var(--body)}
+.wnone{font-size:4rem;line-height:1}
+.wideas{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.wideas button{border:0;border-radius:20px;background:#fff;padding:6px;display:flex;flex-direction:column;gap:4px;cursor:pointer;color:#1b2a38;font:800 clamp(1rem,4.4vw,1.4rem) var(--display);letter-spacing:.05em}
+.wideas img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;max-height:none}
+.write>.bigbtn svg{width:28px;height:28px;flex:none}
+.wscreen{box-sizing:border-box}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -801,11 +832,12 @@ const GAMES={
   memo:{t:'Memorice',i:'🃏',c:'--c6',run:gMemo},
   crece:{t:'¿Dónde crece?',i:'🌳',c:'--c4',run:gGrow},
   traza:{t:'Traza la letra',i:'✏️',c:'--c2',run:gTrace},
-  pinta:{t:'Colorear',i:'🎨',c:'--c7',run:gColor}
+  pinta:{t:'Colorear',i:'🎨',c:'--c7',run:gColor},
+  escribe:{t:'Escribe una palabra',i:'⌨️',c:'--c3',run:gWrite}
 };
 async function openGame(id){
   unlock();const g=GAMES[id];
-  if((id==='crece'||id==='memo')&&!SETS.frutas.data){const b=document.querySelector(`[data-g="${id}"]`);b&&b.classList.add('loading');const ok=await ensure('frutas');b&&b.classList.remove('loading');if(!ok){say('No se pudieron cargar las frutas');return}}
+  if((id==='crece'||id==='memo'||id==='escribe')&&!SETS.frutas.data){const b=document.querySelector(`[data-g="${id}"]`);b&&b.classList.add('loading');const ok=await ensure('frutas');b&&b.classList.remove('loading');if(!ok){say('No se pudieron cargar las frutas');return}}
   if(!SETS.frutas.data)ensure('frutas');
   G.tok++;G.busy=false;G.id=id;if(G.cleanup){G.cleanup();G.cleanup=null}
   close();menu.hidden=true;
@@ -1072,6 +1104,90 @@ function paint(i){
   say('¡Vamos a pintar '+D.n+'! Toca un color y después toca el dibujo');
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!gEl.hidden&&$('album').hidden&&$('stk').hidden){leaveGame()}});
+
+/* ---------- 7. Escribe una palabra ---------- */
+const SYN={banana:'Plátano',platano:'Plátano',aguacate:'Palta',fresa:'Frutilla',fresas:'Frutilla',burro:'Asno',chancho:'Cerdo',cerdito:'Cerdo',puerco:'Cerdo',
+  maiz:'Choclo',elote:'Choclo',aceituna:'Oliva',melocoton:'Durazno',guisante:'Arveja',poroto:'Frijol',cacahuate:'Maní',cacahuete:'Maní',calabacin:'Zapallito',
+  remolacha:'Betarraga',chabacano:'Damasco',albaricoque:'Damasco',gatito:'Gato',perrito:'Perro',caballito:'Caballo',pollo:'Gallo',gallina:'Gallo',mosquito:'Zancudo',
+  armadillo:'Quirquincho',tortuguita:'Tortuga',chile:'Ají',pimiento:'Pimentón',choclo:'Choclo',col:'Repollo',maracuya:'Maracuyá',pajaro:'Loro'};
+function norm(w){return w.toLowerCase().replace(/ñ/g,'\u0001').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\u0001/g,'ñ').replace(/[^a-zñ ]/g,'').replace(/\s+/g,' ').trim()}
+function lev(a,b){const m=a.length,n=b.length;let p=Array.from({length:n+1},(_,j)=>j);for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
+function gWrite(){
+  const ITEMS=[...A().map(d=>({d,set:'a'})),...F().map(d=>({d,set:'f'}))];
+  const byKey=new Map();ITEMS.forEach(it=>{const k=norm(it.d.name);if(!byKey.has(k))byKey.set(k,it)});
+  const findName=n=>ITEMS.find(it=>it.d.name===n);
+  function lookup(w){const k=norm(w);if(!k)return null;
+    if(byKey.has(k))return byKey.get(k);
+    if(SYN[k.replace(/ /g,'')])return findName(SYN[k.replace(/ /g,'')]);
+    for(const cut of [k.replace(/es$/,''),k.replace(/s$/,'')]){if(cut!==k&&byKey.has(cut))return byKey.get(cut);if(SYN[cut])return findName(SYN[cut])}
+    return null}
+  function near(w){const k=norm(w);if(k.length<3)return null;let best=null,bd=99;
+    for(const [key,it] of byKey){if(key[0]!==k[0])continue;const d=lev(k,key);if(d<bd){bd=d;best=it}}
+    return bd<=(k.length<=6?1:2)?best:null}
+  let word='';
+  gBody.innerHTML='';
+  const wrap=el('div','write');
+  const ask=el('button','bigbtn',ICON.ear+'<span>Escribe una fruta, verdura o animal</span>');
+  const screen=el('div','wscreen');const txt=el('span','wtxt');const caret=el('i','caret');screen.append(txt,caret);
+  const kb=el('div','kb');
+  const rows=['QWERTYUIOP','ASDFGHJKLÑ','ZXCVBNM'];
+  rows.forEach((r,ri)=>{const row=el('div','krow');[...r].forEach(ch=>{const b=el('button','key');b.textContent=ch;b.onclick=()=>{unlock();type(ch)};row.appendChild(b)});
+    if(ri===2){const bs=el('button','key wide del','⌫');bs.setAttribute('aria-label','Borrar letra');bs.onclick=()=>{unlock();back()};row.appendChild(bs)}
+    kb.appendChild(row)});
+  const last=el('div','krow');
+  const idea=el('button','key wide idea','💡 Ideas');idea.onclick=()=>{unlock();ideas()};
+  const sp=el('button','key space','espacio');sp.onclick=()=>{unlock();type(' ')};
+  const ok=el('button','key wide go','✓ Listo');ok.onclick=()=>{unlock();check()};
+  last.append(idea,sp,ok);kb.appendChild(last);
+  const pop=el('div','wpop');pop.hidden=true;
+  wrap.append(ask,screen,kb);gBody.append(wrap,pop);
+  const intro=()=>say('Escribe el nombre de una fruta, una verdura o un animal. Después toca Listo');
+  ask.onclick=()=>{unlock();intro()};
+  function render(){txt.textContent=word;screen.classList.toggle('empty',!word)}
+  function type(ch){if(!pop.hidden||word.length>=22)return;if(ch===' '&&(!word||word.endsWith(' ')))return;word+=ch;render();
+    if(ch!==' '){try{speechSynthesis.cancel()}catch(e){};say(LNAME[ch]||ch.toLowerCase())}}
+  function back(){if(!pop.hidden)return;word=word.slice(0,-1);render()}
+  function showPop(html,btns){pop.innerHTML='';const box=el('div','wbox',html);const row=el('div','trow');btns.forEach(b=>row.appendChild(b));box.appendChild(row);pop.appendChild(box);pop.hidden=false}
+  function closePop(clear){pop.hidden=true;G.busy=false;if(clear){word='';render()}}
+  function check(){
+    if(G.busy||!pop.hidden)return;
+    if(!word.trim()){say('Primero escribe una palabra');return}
+    const it=lookup(word);
+    if(it){G.busy=true;const d=it.d;
+      const nb=el('button','bigbtn go',ICON.next+'<span>Otra palabra</span>');nb.onclick=()=>{unlock();closePop(true)};
+      const hb=el('button','bigbtn',ICON.ear+'<span>Escuchar</span>');hb.onclick=()=>{unlock();token++;if(it.set==='a'&&d.snd)playSound(d,()=>say(d.name));else say(d.name)};
+      showPop('<img alt=""><h3></h3><p class="wsub"></p>',[hb,nb]);
+      pop.querySelector('img').src=d.img;pop.querySelector('h3').textContent=d.name;
+      pop.querySelector('.wsub').textContent=it.set==='a'?'¡Es un animal!':(d.grow?'Crece '+d.grow:'¡Es una fruta o verdura!');
+      const go=()=>win(it.set,'¡Muy bien! Escribiste '+d.name,()=>{G.busy=false});
+      if(it.set==='a'&&d.snd){token++;playSound(d,()=>later(go,150));cheer();confetti(120)}else go();
+      return}
+    oops();
+    const nr=near(word);
+    const tb=el('button','bigbtn go',ICON.erase+'<span>Intentar de nuevo</span>');tb.onclick=()=>{unlock();closePop(false)};
+    if(nr){const d=nr.d;
+      showPop('<p class="wsub">¿Quisiste escribir…?</p><img alt="" class="small"><h3></h3>',[tb]);
+      pop.querySelector('img').src=d.img;pop.querySelector('h3').textContent=d.name.toUpperCase();
+      say('Casi. ¿Quisiste escribir '+d.name+'? Se escribe así: '+[...norm(d.name).replace(/ /g,'')].map(c=>LNAME[c.toUpperCase()]||c).join(', '))}
+    else{showPop('<div class="wnone">🤔</div><h3>No conozco esa palabra</h3><p class="wsub">Escribe una fruta, verdura o animal. Toca 💡 Ideas si necesitas ayuda.</p>',[tb]);
+      say('No conozco esa palabra. Escribe una fruta, una verdura o un animal')}
+  }
+  function ideas(){
+    if(!pop.hidden)return;const seenL=new Set();const easy=ITEMS.filter(it=>{const k=it.set+it.d.L;if(seenL.has(k))return false;seenL.add(k);return true});const pickN=shuffle(easy.filter(it=>norm(it.d.name).length<=8&&!/ /.test(it.d.name))).slice(0,4);
+    const g=el('div','wideas');pickN.forEach(it=>{const b=el('button','','<img alt=""><span></span>');b.querySelector('img').src=it.d.img;b.querySelector('span').textContent=it.d.name.toUpperCase();
+      b.onclick=()=>{unlock();say(it.d.name)};g.appendChild(b)});
+    const cb=el('button','bigbtn go',ICON.check+'<span>¡A escribir!</span>');cb.onclick=()=>{unlock();closePop(false)};
+    showPop('<p class="wsub">Copia una de estas palabras</p>',[cb]);pop.querySelector('.wbox').insertBefore(g,pop.querySelector('.wbox .trow'));
+    say('Mira estas ideas. Copia una');
+  }
+  const kd=e=>{if(G.id!=='escribe'||gEl.hidden||!$('album').hidden)return;const k=e.key;
+    if(k==='Enter'){e.preventDefault();pop.hidden?check():closePop(!!pop.querySelector('.wbox img:not(.small)'));return}
+    if(k==='Backspace'){e.preventDefault();back();return}
+    if(k===' '){e.preventDefault();type(' ');return}
+    const u=norm(k).toUpperCase();if(u.length===1&&/[A-ZÑ]/.test(u)){e.preventDefault();unlock();type(u)}};
+  document.addEventListener('keydown',kd);G.cleanup=()=>document.removeEventListener('keydown',kd);
+  render();intro();
+}
 
 </script>
 
